@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gomathi S — Biotechnologist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0a0e;
+    --bg-panel: #121218;
+    --bg-panel-2: #17171f;
+    --line: #2a2a35;
+    --gold: #d9a441;
+    --gold-bright: #f2c94c;
+    --text: #e8e6df;
+    --text-dim: #9c9ba8;
+    --text-faint: #6b6a78;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection{ background: var(--gold); color: #0a0a0e; }
+
+  h1, h2, h3, .display{
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  a { color: var(--gold-bright); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+
+  :focus-visible{
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 34%, rgba(217,164,65,0.16), transparent 60%),
+      linear-gradient(180deg, #08080b 0%, #0a0a0e 70%, #0a0a0e 100%);
+  }
+
+  .skyline{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 34%;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    opacity: 0.9;
+  }
+
+  .beam{
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    transform: translateX(-50%);
+    background: conic-gradient(from 250deg at 50% 0%, transparent 0deg, rgba(217,164,65,0.10) 18deg, transparent 40deg);
+    animation: sweep 9s ease-in-out 0.4s 1 both;
+    pointer-events: none;
+  }
+  @keyframes sweep{
+    0%   { opacity: 0; transform: translateX(-50%) rotate(-14deg); }
+    12%  { opacity: 1; }
+    50%  { transform: translateX(-50%) rotate(10deg); }
+    88%  { opacity: 1; }
+    100% { opacity: 0.55; transform: translateX(-50%) rotate(-4deg); }
+  }
+
+  .emblem{
+    width: 78px;
+    height: auto;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rise 1s ease-out 0.3s forwards;
+  }
+  .emblem path{ fill: var(--gold-bright); }
+
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow{
+    color: var(--text-faint);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: rise 0.8s ease-out 0.55s forwards;
+  }
+
+  .hero h1{
+    font-size: clamp(44px, 9vw, 92px);
+    font-weight: 700;
+    line-height: 0.98;
+    color: var(--text);
+    opacity: 0;
+    animation: rise 0.9s ease-out 0.7s forwards;
+  }
+
+  .hero .role{
+    margin-top: 18px;
+    font-size: clamp(16px, 2.6vw, 20px);
+    color: var(--gold);
+    font-weight: 500;
+    opacity: 0;
+    animation: rise 0.9s ease-out 0.95s forwards;
+  }
+
+  .hero .tagline{
+    margin-top: 22px;
+    max-width: 520px;
+    color: var(--text-dim);
+    font-size: 15.5px;
+    opacity: 0;
+    animation: rise 0.9s ease-out 1.15s forwards;
+  }
+
+  .hero .contact-row{
+    margin-top: 34px;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-dim);
+    opacity: 0;
+    animation: rise 0.9s ease-out 1.35s forwards;
+  }
+  .hero .contact-row a{ color: var(--text-dim); }
+  .hero .contact-row a:hover{ color: var(--gold-bright); }
+
+  .scroll-cue{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--text-faint);
+    opacity: 0;
+    animation: rise 0.8s ease-out 1.6s forwards;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding: 88px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .kicker{
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .kicker .case-no{
+    font-family: 'Oswald', sans-serif;
+    color: var(--text-faint);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+  .kicker h2{
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .kicker::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* Objective */
+  .objective p{
+    max-width: 62ch;
+    color: var(--text-dim);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  .objective p span{ color: var(--text); }
+
+  /* Education — case file / dossier lines */
+  .dossier{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    background: var(--bg-panel);
+  }
+  .dossier-row{
+    display: grid;
+    grid-template-columns: 90px 1fr 160px;
+    gap: 18px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .dossier-row:last-child{ border-bottom: none; }
+  .dossier-row .year{
+    font-family: 'Oswald', sans-serif;
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .dossier-row .inst{
+    color: var(--text);
+    font-weight: 500;
+  }
+  .dossier-row .course{
+    color: var(--text-dim);
+    font-size: 14.5px;
+    margin-top: 3px;
+  }
+  .dossier-row .score{
+    text-align: right;
+    color: var(--text-dim);
+    font-size: 14.5px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.03em;
+  }
+
+  /* Case file — Project */
+  .case-file{
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
+    padding: 34px;
+    position: relative;
+  }
+  .case-file .stamp{
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    border: 2px solid rgba(217,164,65,0.55);
+    color: rgba(217,164,65,0.75);
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    transform: rotate(6deg);
+    border-radius: 3px;
+  }
+  .case-file h3{
+    font-size: 22px;
+    color: var(--text);
+    max-width: 80%;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .case-file .org{
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .case-file p{
+    color: var(--text-dim);
+    font-size: 15.5px;
+    max-width: 65ch;
+  }
+
+  /* Training */
+  .training-block p{
+    color: var(--text-dim);
+    max-width: 68ch;
+    margin-bottom: 18px;
+  }
+  .training-block .focus{
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 18px;
+    color: var(--text);
+    font-size: 15.5px;
+  }
+
+  /* Utility belt — technical expertise */
+  .belt{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .belt-item{
+    background: var(--bg-panel);
+    padding: 24px 22px;
+  }
+  .belt-item h4{
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    color: var(--gold-bright);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .belt-item ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .belt-item li{
+    color: var(--text-dim);
+    font-size: 14px;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.45;
+  }
+  .belt-item li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 1px;
+    transform: rotate(45deg);
+  }
+
+  /* Achievements — evidence log */
+  .log{
+    display: flex;
+    flex-direction: column;
+  }
+  .log-item{
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .log-item:last-child{ border-bottom: none; }
+  .log-item .mark{
+    color: var(--gold);
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    padding-top: 3px;
+    min-width: 20px;
+  }
+  .log-item p{
+    color: var(--text-dim);
+    font-size: 15.5px;
+  }
+  .log-item strong{ color: var(--text); font-weight: 600; }
+
+  /* Skills line */
+  .skillbar{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .skillbar span{
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    font-size: 13px;
+    padding: 7px 14px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* Contact / footer */
+  .signal-footer{
+    padding: 100px 0 60px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(217,164,65,0.10), transparent 65%);
+  }
+  .signal-footer h2{
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .signal-footer p{
+    color: var(--text-dim);
+    margin-bottom: 32px;
+  }
+  .signal-footer .cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    padding: 14px 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .signal-footer .cta:hover{
+    background: var(--gold);
+    color: #0a0a0e;
+    text-decoration: none;
+  }
+  .signal-footer .meta{
+    margin-top: 46px;
+    color: var(--text-faint);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 720px){
+    .belt{ grid-template-columns: 1fr; }
+    .dossier-row{ grid-template-columns: 1fr; gap: 4px; }
+    .dossier-row .score{ text-align: left; }
+    .case-file .stamp{ display: none; }
+    section{ padding: 64px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .emblem, .eyebrow, .hero h1, .hero .role, .hero .tagline, .hero .contact-row, .scroll-cue, .beam{
+      animation: none !important;
+      opacity: 1 !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="beam" aria-hidden="true"></div>
+
+  <svg class="emblem" viewBox="0 0 100 60" aria-hidden="true">
+    <path d="M50 2 C46 10 40 6 34 8 C38 12 34 14 30 12 C24 16 14 14 0 22 C10 22 16 24 20 28 C10 30 4 34 0 40 C10 36 18 36 24 40 C20 44 20 48 22 52 C26 46 30 44 36 44 C34 48 36 52 40 54 C40 48 44 44 50 44 C56 44 60 48 60 54 C64 52 66 48 64 44 C70 44 74 48 78 52 C80 48 80 44 76 40 C82 36 90 36 100 40 C96 34 90 30 80 28 C84 24 90 22 100 22 C86 14 76 16 70 12 C66 14 62 12 66 8 C60 6 54 10 50 2 Z"/>
+  </svg>
+
+  <p class="eyebrow">BIOTECHNOLOGY&nbsp;&nbsp;·&nbsp;&nbsp;CHENNAI</p>
+  <h1>GOMATHI&nbsp;S</h1>
+  <p class="role">Research-driven Biotechnologist</p>
+  <p class="tagline">Every city needs someone watching the wound heal, the cells culture, the data hold up. I do the quiet work in the lab that others build on.</p>
+
+  <div class="contact-row">
+    <a href="mailto:gomselok@gmail.com">gomselok@gmail.com</a>
+    <span>Vadapalani, Chennai&nbsp;–51</span>
+  </div>
+
+  <p class="scroll-cue">SCROLL</p>
+</header>
+
+<main class="wrap">
+
+  <!-- OBJECTIVE -->
+  <section class="objective" id="objective">
+    <div class="kicker"><span class="case-no">FILE 01</span><h2>Objective</h2></div>
+    <p><span>An opportunity to explore my knowledge in the field of Science and Technology</span> — and to take on a challenging position in an esteemed institution where that knowledge can do real work.</p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="kicker"><span class="case-no">FILE 02</span><h2>Education</h2></div>
+    <div class="dossier">
+      <div class="dossier-row">
+        <span class="year">2009</span>
+        <div>
+          <div class="inst">Dr. M.G.R University</div>
+          <div class="course">B.Tech, Industrial Biotechnology</div>
+        </div>
+        <span class="score">90%</span>
+      </div>
+      <div class="dossier-row">
+        <span class="year">2005</span>
+        <div>
+          <div class="inst">Sarada Vidyalaya Hr. Sec. School</div>
+          <div class="course">12th Standard</div>
+        </div>
+        <span class="score">75%</span>
+      </div>
+      <div class="dossier-row">
+        <span class="year">2003</span>
+        <div>
+          <div class="inst">Nehru Matriculation Hr. Sec. School</div>
+          <div class="course">10th Standard</div>
+        </div>
+        <span class="score">75%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT -->
+  <section id="project">
+    <div class="kicker"><span class="case-no">FILE 03</span><h2>Project Profile</h2></div>
+    <div class="case-file">
+      <span class="stamp">CASE CLOSED</span>
+      <h3>Biochemical Assessment of Wound Healing Activity Under Novel Treatments</h3>
+      <p class="org">Stanley Medical College &amp; Hospital, and Dr. M.G.R University</p>
+      <p>Studied wound healing activity in injured patients under novel treatments — vacuum therapy and electrical stimulation. Biochemical markers of healing, including protein profile, collagen, and glycoproteins, were measured with standard procedures. Conclusion: both treatments meaningfully improved healing outcomes.</p>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section id="training">
+    <div class="kicker"><span class="case-no">FILE 04</span><h2>Training</h2></div>
+    <div class="training-block">
+      <p>Biotech Industrial Training Program, sponsored by the Department of Biotechnology, Ministry of Science and Technology, Government of India — November 2009 to May 2010, at CavinKare Research Centre (CRC), Chennai.</p>
+      <p class="focus">Project focus: studying the efficacy of plant-based compounds in accelerating cellular migration of skin fibroblasts.</p>
+    </div>
+  </section>
+
+  <!-- TECHNICAL EXPERTISE -->
+  <section id="expertise">
+    <div class="kicker"><span class="case-no">FILE 05</span><h2>Technical Expertise</h2></div>
+    <div class="belt">
+      <div class="belt-item">
+        <h4>Animal Cell Culture</h4>
+        <ul>
+          <li>Isolation of fibroblasts &amp; keratinocytes from human skin tissue</li>
+          <li>Culture &amp; maintenance of B16F10, A375, A431 lines</li>
+          <li>Cell passaging and plating</li>
+          <li>Media prep — DMEM, PBS, antibiotics</li>
+          <li>Freezing and thawing of cells</li>
+          <li>Cell counting &amp; viability (trypan blue exclusion)</li>
+          <li>Cell migration assay</li>
+          <li>MTT assay</li>
+        </ul>
+      </div>
+      <div class="belt-item">
+        <h4>Molecular Biology</h4>
+        <ul>
+          <li>DNA isolation from yeast</li>
+          <li>Agarose gel electrophoresis</li>
+          <li>SDS-PAGE</li>
+        </ul>
+      </div>
+      <div class="belt-item">
+        <h4>Biochemistry</h4>
+        <ul>
+          <li>Mushroom tyrosinase inhibition assay</li>
+          <li>Elastase enzyme inhibition assay</li>
+          <li>Melanin inhibition assay</li>
+          <li>DPPH free radical scavenging assay</li>
+          <li>Protein estimation &amp; standards</li>
+          <li>Melanin estimation &amp; standards</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:22px; color:var(--text-dim); font-size:14.5px;">Computer proficiency</p>
+    <div class="skillbar">
+      <span>MS Office</span>
+      <span>C Language</span>
+      <span>C++</span>
+      <span>NIIT Certified</span>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="kicker"><span class="case-no">FILE 06</span><h2>Achievements</h2></div>
+    <div class="log">
+      <div class="log-item">
+        <span class="mark">01</span>
+        <p>Presented a paper at Dr. M.G.R University on <strong>Golden Rice</strong>.</p>
+      </div>
+      <div class="log-item">
+        <span class="mark">02</span>
+        <p>Served as <strong>Coordinator</strong> for BIOZONE&nbsp;'08, an all-India seminar hosted by Dr. M.G.R University.</p>
+      </div>
+      <div class="log-item">
+        <span class="mark">03</span>
+        <p>Completed in-plant industrial training at <strong>Madras Pharmaceuticals</strong> (Jun 28 – Jul 7, 2007).</p>
+      </div>
+      <div class="log-item">
+        <span class="mark">04</span>
+        <p>Undertook an observership course at the <strong>Cancer Institute</strong> (Aug 27 – Sep 8, 2007).</p>
+      </div>
+      <div class="log-item">
+        <span class="mark">05</span>
+        <p>Active participant across technical and cultural programs throughout academic life.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CONTACT / FOOTER -->
+<footer class="signal-footer">
+  <div class="wrap">
+    <h2>The signal's up.</h2>
+    <p>For opportunities, collaborations, or a conversation about the work — reach out.</p>
+    <a class="cta" href="mailto:gomselok@gmail.com">gomselok@gmail.com</a>
+    <div class="meta">GOMATHI S — VADAPALANI, CHENNAI-51</div>
+  </div>
+</footer>
+
+</body>
+</html>
